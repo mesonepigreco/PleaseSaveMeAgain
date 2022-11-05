@@ -1,0 +1,23 @@
+{
+  "name": "pleasesavemeagain",
+  "version": "1.0.0",
+  "description": "Game for GameOff2022 jam",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mesonepigreco/PleaseSaveMeAgain.git"
+  },
+  "author": "Lorenzo Monacelli",
+  "license": "GPL-3.0-or-later",
+  "bugs": {
+    "url": "https://github.com/mesonepigreco/PleaseSaveMeAgain/issues"
+  },
+  "homepage": "https://github.com/mesonepigreco/PleaseSaveMeAgain#readme",
+  "devDependencies": {
+    "webpack": "^5.74.0",
+    "webpack-cli": "^4.10.0"
+  }
+}
