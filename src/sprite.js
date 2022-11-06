@@ -6,6 +6,7 @@ export class Sprite {
         this.y = y;
         this.width = null;
         this.height = null;
+        this.static = false;
         this.kind = kind;
         this.current_frame = 0;
         this.scale_factor = 1;
@@ -30,6 +31,8 @@ export class Sprite {
         this.rect = null;
         this.current_animation = null;
         this.is_spritesheet = false;
+        this.draw_start_x = null;
+        this.draw_start_y = null;
         this.current_spritesheet_index = 0;
         this.loaded_animations = {
         };
@@ -41,6 +44,26 @@ export class Sprite {
             y: 0
         };
 
+    }
+
+    /**
+     * Load the sprite as a static image from a spritesheet.
+     * This is very usefull for the tilemap generation.
+     * 
+     * 
+     * @param {Image} imageref 
+     * @param {Int} start_x 
+     * @param {Int} start_y 
+     * @param {Int} width 
+     * @param {Int} height 
+     */
+    set_static_spritesheet(imageref, start_x, start_y, width, height) {
+        this.image = imageref;
+        this.static = true;
+        this.draw_start_x = start_x;
+        this.draw_start_y = start_y;
+        this.width = width;
+        this.height = height;
     }
 
     get my_width() {
@@ -233,9 +256,17 @@ export class Sprite {
         if (!this.is_spritesheet)
             context.drawImage(this.image, Math.floor(draw_pos.x), Math.floor(draw_pos.y), Math.floor(this.my_width * this.scale_x), Math.floor(this.my_height * this.scale_y)); // A FLOOR?
         else {
+            let source_x = 0;
+            let source_y = 0;
+
+            if (this.static) {
+                source_x = this.draw_start_x;
+                source_y = this.draw_start_y;
+            } else {
+                source_x = this.width * this.current_spritesheet_index;
+            }
             // Blit the spritesheet
-            let source_x = this.width * this.current_spritesheet_index;
-            context.drawImage(this.image, source_x, 0, this.width, this.height, Math.floor(draw_pos.x), Math.floor(draw_pos.y), Math.floor(this.width * this.scale_x), Math.floor(this.height * this.scale_y))
+            context.drawImage(this.image, source_x, source_y, this.width, this.height, Math.floor(draw_pos.x), Math.floor(draw_pos.y), Math.floor(this.width * this.scale_x), Math.floor(this.height * this.scale_y))
         }
         context.restore();
     }

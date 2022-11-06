@@ -21,16 +21,28 @@ export class Player extends Character {
         
         // Initialize the animations
 
-        this.load_static_image("assets/boy/boy.png", () => {
+        this.load_static_image("assets/princess.png", () => {
             self.loaded = true;
         });
 
         this.set_width_height(18, 28);
-        this.setup_spritesheet_animation("idle_up", [4]);
+        this.setup_spritesheet_animation("idle_up", [3]);
         this.setup_spritesheet_animation("idle_down", [0]);
-        this.setup_spritesheet_animation("idle_right", [7]);
-        this.setup_spritesheet_animation("idle_left", [11]);
+        this.setup_spritesheet_animation("idle_right", [1]);
+        this.setup_spritesheet_animation("idle_left", [2]);
 
+        this.setup_spritesheet_animation("walk_up", [3]);
+        this.setup_spritesheet_animation("walk_down", [0]);
+        this.setup_spritesheet_animation("walk_right", [1]);
+        this.setup_spritesheet_animation("walk_left", [2]);
+
+        /*
+        this.setup_spritesheet_animation("attack_up", [4]);
+        this.setup_spritesheet_animation("attack_down", [0]);
+        this.setup_spritesheet_animation("attack_right", [7]);
+        this.setup_spritesheet_animation("attack_left", [11]);*/
+
+        /*
         this.setup_spritesheet_animation("walk_up", [4, 5, 4, 6]);
         this.setup_spritesheet_animation("walk_down", [0, 1, 0, 2]);
         this.setup_spritesheet_animation("walk_right", [7, 8, 7, 9]);
@@ -39,7 +51,7 @@ export class Player extends Character {
         this.setup_spritesheet_animation("attack_up", [4, 4, 4]);        
         this.setup_spritesheet_animation("attack_down", [0, 3, 3]);
         this.setup_spritesheet_animation("attack_right", [7, 10, 10]);
-        this.setup_spritesheet_animation("attack_left", [11, 14, 14]);
+        this.setup_spritesheet_animation("attack_left", [11, 14, 14]);*/
 
         //this.load_frame(load, "assets/wizard/back.png", "idle_up");
         //this.load_frame(load, "assets/wizard/front.png", "idle_down");
@@ -71,7 +83,7 @@ export class Player extends Character {
 
         this.kind = "player";
 
-        this.spells = ['heal', 'invisiblility'];
+        this.spells = []; //['heal', 'invisiblility'];
         this.spell_cooldowns = [1000, 5000];
         this.mana_consumption = [30, 15];
         this.selected_spell = 0;
